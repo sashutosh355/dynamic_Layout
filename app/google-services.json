@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "191214729861",
+    "firebase_url": "https://dynamic-layout-36c5a.firebaseio.com",
+    "project_id": "dynamic-layout-36c5a",
+    "storage_bucket": "dynamic-layout-36c5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191214729861:android:63bc8b33c621ae2c5547ec",
+        "android_client_info": {
+          "package_name": "com.infinity_loop.dunamiclayout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191214729861-joptevaefpag3assnldu7b88ddgfb1cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbMxZQEayJbXbBZwk5Ee9TypWB-gUv778"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191214729861-joptevaefpag3assnldu7b88ddgfb1cj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
