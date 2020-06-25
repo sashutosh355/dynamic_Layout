@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".other"></activity>
+        <activity android:name=".PayoutSummery"/>
+        <activity android:name=".other" />
         <activity android:name=".AddActivity" />
         <activity android:name=".ReedemHistory" />
         <activity android:name=".redeem" />

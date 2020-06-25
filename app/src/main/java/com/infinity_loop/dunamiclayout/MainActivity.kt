@@ -26,7 +26,12 @@ class MainActivity : AppCompatActivity() {
         var daily : TextView = findViewById(R.id.daily_bonus)
         var setting : TextView = findViewById(R.id.Settings)
         var reedem :TextView = findViewById(R.id.reedem)
+        var payoutSummery:TextView = findViewById(R.id.payment)
 
+        payoutSummery.setOnClickListener {
+            val intent = Intent(this, PayoutSummery::class.java)
+            startActivity(intent)
+        }
         reedem.setOnClickListener {
             val intent = Intent(this, redeem::class.java)
             startActivity(intent)
