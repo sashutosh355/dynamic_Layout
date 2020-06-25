@@ -20,7 +20,7 @@ public class DataBaseToJson {
         //Creating the Statement
         Statement stmt = con.createStatement();
         //Retrieving the records
-        ResultSet rs = stmt.executeQuery("Select * from string");
+        ResultSet rs = stmt.executeQuery("Select * from tbluserea");
         return rs;
     }
     public static void main(String args[]) throws Exception {
@@ -33,13 +33,13 @@ public class DataBaseToJson {
         while(rs.next()) {
             JSONObject record = new JSONObject();
             //Inserting key-value pairs into the json object
-            record.put("id", rs.getInt("id"));
-            record.put("package", rs.getString("package"));
+            record.put("user_id", rs.getString("user_id"));
+            record.put("email", rs.getString("email"));
             array.add(record);
         }
         jsonObject.put("package", array);
         try {
-            FileWriter file = new FileWriter("C:/Users/sashu/Desktop/package.json");
+            FileWriter file = new FileWriter("C:/Users/Kus/Desktop/package.json");
             file.write(jsonObject.toJSONString());
             file.close();
         } catch (IOException e) {

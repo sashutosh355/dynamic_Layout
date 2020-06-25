@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#B3EB72</color>
     <color name="colorAccent">#F8E9BA</color>
 
+<!--    Invite friends-->
+    <color name="colorTextCode">#FFFFFF</color>
+    <color name="buttonBackground">#656262</color>
+    <color name="red">#F44336</color>
+
 </resources>
