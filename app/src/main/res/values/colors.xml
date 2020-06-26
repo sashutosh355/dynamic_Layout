@@ -8,5 +8,6 @@
     <color name="colorTextCode">#FFFFFF</color>
     <color name="buttonBackground">#656262</color>
     <color name="red">#F44336</color>
+    <color name="Black">#000000</color>
 
 </resources>
