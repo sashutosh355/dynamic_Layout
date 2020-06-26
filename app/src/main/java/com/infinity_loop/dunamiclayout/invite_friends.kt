@@ -18,7 +18,11 @@ import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.dynamiclinks.ktx.iosParameters
 import com.google.firebase.ktx.Firebase
 import org.json.JSONException
-
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
 
 class invite_friends : AppCompatActivity() {
 
@@ -28,7 +32,8 @@ class invite_friends : AppCompatActivity() {
 
     lateinit var invite:Button;
 
-    lateinit var lists:ListView;
+    internal lateinit var lists:ListView;
+    var dataList = ArrayList<HashMap<String, String>>()
 
     private var requestQueue: RequestQueue? = null
 
@@ -48,7 +53,7 @@ class invite_friends : AppCompatActivity() {
 
         invite = findViewById(R.id.btn_invite)
 
-        lists = findViewById(R.id.listView)
+        lists = findViewById(R.id.listview1)
 
         jsonParse()
 
@@ -74,34 +79,51 @@ class invite_friends : AppCompatActivity() {
     }
 
     private fun jsonParse() {
-        val url = "http://192.168.43.49/RewardsProject/output.json"
+        val url = "http://192.168.43.49/RewardsProject/package.json"
         val request = JsonObjectRequest(Request.Method.GET, url, null, Response.Listener {
                 response ->try {
-            var jsonArray = response.getJSONArray("tblusereareq")
+            var jsonArray = response.getJSONArray("inviteArr")
             for (i in 0 until jsonArray.length()) {
-                val tblusereareq = jsonArray.getJSONObject(i)
-                val payMode = tblusereareq.getString("payMode")
-                val coins = tblusereareq.getString("coins")
-                val created_at = tblusereareq.getString("created_at")
-                val currency = tblusereareq.getString("currency")
-                val value = tblusereareq.getString("value")
-                val userCode = tblusereareq.getString("userCode")
-                val reqID = tblusereareq.getString("reqID")
-                val status = tblusereareq.getString("status")
-                val issueNote = tblusereareq.getString("issueNote")
+                val inviteArr = jsonArray.getJSONObject(i)
 
-                this.coins.append(coins)
-                this.code.append(value)
-
+                val map = HashMap<String, String>()
+                map["fno"] = inviteArr.getString("fno")
+                map["cns"] = inviteArr.getString("cns")
+                dataList.add(map)
             }
-        } catch (e: JSONException) {
+            lists.adapter = CustomAdapter(this@invite_friends, dataList)
+        }
+        catch (e: JSONException) {
+
             e.printStackTrace()
         }
         }, Response.ErrorListener { error -> error.printStackTrace() })
         requestQueue?.add(request)
     }
+}
 
+class CustomAdapter(private val context: Context,
+                    private val dataList: ArrayList<HashMap<String, String>>) : BaseAdapter() {
 
+    private val inflater: LayoutInflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    override fun getCount(): Int { return dataList.size }
+    override fun getItem(position: Int): Int { return position }
+    override fun getItemId(position: Int): Long { return position.toLong() }
 
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var dataList = dataList[position]
 
+        val rowView = inflater.inflate(R.layout.listview_invite_friends, parent, false)
+        rowView.findViewById<TextView>(R.id.friends).text = dataList["fno"]
+        rowView.findViewById<TextView>(R.id.coins_granted).text = dataList["cns"]
+
+//        Picasso.get()
+//            .load(dataitem.get("image"))
+//            .resize(50, 50)
+//            .centerCrop()
+//            .into(rowView.findViewById<ImageView>(R.id.row_image))
+
+        rowView.tag = position
+        return rowView
+    }
 }
