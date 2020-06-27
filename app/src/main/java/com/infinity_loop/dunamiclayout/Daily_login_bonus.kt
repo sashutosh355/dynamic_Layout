@@ -15,7 +15,7 @@ class Daily_login_bonus : AppCompatActivity() {
 
     var showedToday = false
     lateinit var time_spent:Button
-
+    private val START_TIMER:Long = 1000*60*5
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +52,13 @@ class Daily_login_bonus : AppCompatActivity() {
 
         // TODO: 26-06-2020 make new thread for timer --->
         time_spent = findViewById<Button>(R.id.btn_time_spent)
+        time_spent.text ="GET"
 
         time_spent.setOnClickListener(View.OnClickListener { v ->
-            MyCounter(1000*60*5, 1000).start()
+
+            var t : Thread = Thread(MyCounter(START_TIMER, 1000))
+            t.run()
+
         })
     }
     override fun onSupportNavigateUp(): Boolean {
@@ -62,19 +66,26 @@ class Daily_login_bonus : AppCompatActivity() {
         return true
     }
 
-    inner class MyCounter : CountDownTimer {
+    inner class MyCounter : CountDownTimer , Runnable {
         constructor(millisInFuture: Long, interval: Long) : super(
             millisInFuture,
             interval
         )
 
+        override fun run(){
+            time_spent.isClickable=false
+            start()
+        }
 
         override fun onFinish() {
-            // TODO: on finish of timer of daily earn
+            time_spent.text = "COLLECT"
+            time_spent.isClickable =true
         }
 
         override fun onTick(millisUntilFinished: Long) {
-            time_spent.text = millisUntilFinished.toString()
+            var min = millisUntilFinished /1000 /60
+            var sec = millisUntilFinished /1000 % 60
+            time_spent.text = String.format("%02d:%02d", min, sec)
         }
 
     }
