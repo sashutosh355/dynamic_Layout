@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.view.View
 import android.widget.Toast
+import com.mysql.jdbc.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_paytm.*
 
     class AddActivity : AppCompatActivity() {

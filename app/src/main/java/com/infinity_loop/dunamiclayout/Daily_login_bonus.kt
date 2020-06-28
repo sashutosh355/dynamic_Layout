@@ -48,8 +48,6 @@ class Daily_login_bonus : AppCompatActivity() {
         else{
             Toast.makeText(this, "Reward received today",Toast.LENGTH_SHORT).show()
         }
-
-
         // TODO: 26-06-2020 make new thread for timer --->
         time_spent = findViewById<Button>(R.id.btn_time_spent)
         time_spent.text ="GET"
@@ -58,7 +56,6 @@ class Daily_login_bonus : AppCompatActivity() {
 
             var t : Thread = Thread(MyCounter(START_TIMER, 1000))
             t.run()
-
         })
     }
     override fun onSupportNavigateUp(): Boolean {

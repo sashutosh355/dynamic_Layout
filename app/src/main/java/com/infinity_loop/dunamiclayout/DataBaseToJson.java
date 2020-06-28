@@ -14,7 +14,7 @@ public class DataBaseToJson {
         //Registering the Driver
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/test";
+        String mysqlUrl = "jdbc:mysql://localhost/sample";
         Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
         System.out.println("Connection established......");
         //Creating the Statement
@@ -35,11 +35,30 @@ public class DataBaseToJson {
             //Inserting key-value pairs into the json object
             record.put("user_id", rs.getString("user_id"));
             record.put("email", rs.getString("email"));
+            record.put("userCode", rs.getString("userCode"));
+            record.put("password", rs.getString("password"));
+            record.put("fullname", rs.getString("fullname"));
+            record.put("gender", rs.getString("gender"));
+            record.put("username", rs.getString("username"));
+            record.put("created_at", rs.getString("created_at"));
+            record.put("avatar", rs.getString("avatar"));
+            record.put("twitter", rs.getString("twitter"));
+            record.put("facebook", rs.getString("facebook"));
+            record.put("follower_count", rs.getString("follower_count"));
+            record.put("following_count", rs.getString("following_count"));
+            record.put("post_count", rs.getString("post_count"));
+            record.put("bio", rs.getString("bio"));
+            record.put("blogurl", rs.getString("blogurl"));
+            record.put("ulanguage", rs.getString("ulanguage"));
+            record.put("ucountry", rs.getString("ucountry"));
+            record.put("ucity", rs.getString("ucity"));
+            record.put("ubirthday", rs.getString("ubirthday"));
+            record.put("coins", rs.getString("coins"));
             array.add(record);
         }
-        jsonObject.put("package", array);
+        jsonObject.put("userea", array);
         try {
-            FileWriter file = new FileWriter("C:/Users/Kus/Desktop/package.json");
+            FileWriter file = new FileWriter("C:/Users/sashu/Desktop/userea.json");
             file.write(jsonObject.toJSONString());
             file.close();
         } catch (IOException e) {

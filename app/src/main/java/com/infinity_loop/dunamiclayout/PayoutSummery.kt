@@ -10,6 +10,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 class PayoutSummery : AppCompatActivity() {
     private lateinit var textView: TextView

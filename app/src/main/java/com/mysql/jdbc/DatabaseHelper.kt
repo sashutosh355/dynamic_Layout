@@ -1,4 +1,4 @@
-package com.infinity_loop.dunamiclayout
+package com.mysql.jdbc
 
 import android.content.ContentValues
 import android.content.Context
@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.infinity_loop.dunamiclayout.UserInfo
 
 
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context,
+    DATABASE_NAME, null, 1) {
 
     companion object {
         val DATABASE_NAME = "MYDatabase.db"
@@ -59,7 +60,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     //Getting all user list
     fun getAllUserData(): ArrayList<UserInfo> {
         val stuList: ArrayList<UserInfo> = arrayListOf<UserInfo>()
-        val cursor: Cursor = getReadableDatabase().query(TABLE_NAME, arrayOf(ID, NAME,  PHONE), null, null, null, null, null)
+        val cursor: Cursor = getReadableDatabase().query(
+            TABLE_NAME, arrayOf(
+                ID,
+                NAME,
+                PHONE
+            ), null, null, null, null, null)
         try {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst()
